@@ -44,22 +44,30 @@ except ImportError:
     # without the i18n module
     _ = lambda x: x
 
-client_id = self.registryValue("client_id"),
-client_id = self.registryValue("client_secret"),
-password = self.registryValue("password"),
-username = self.registryValue("username"),
-user_agent = self.registryValue("user_agent")
-
 reddit = praw.Reddit(
-    client_id=client_id,
-    client_secret=client_secret,
-    password=password,
-    user_agent=user_agent,
-    username=username,
-    )
+    client_id="",
+    client_secret="",
+    password="",
+    user_agent="",
+    username="",
+)
+
+# client_id = self.registryValue("client_id"),
+# client_id = self.registryValue("client_secret"),
+# password = self.registryValue("password"),
+# username = self.registryValue("username"),
+# user_agent = self.registryValue("user_agent")
+
+# reddit = praw.Reddit(
+#     client_id=client_id,
+#     client_secret=client_secret,
+#     password=password,
+#     user_agent=user_agent,
+#     username=username,
+#     )
 
 
-subreddit = reddit.subreddit("TripSit")
+# subreddit = reddit.subreddit("TripSit")
 
 class Reddit(callbacks.Plugin):
     """Interact with Reddit using the PRAW library"""
@@ -103,17 +111,17 @@ class Reddit(callbacks.Plugin):
                 score: {submission.score} comments: {submission.num_comments} link: {submission.url} """)
 
     getposts = wrap(
-        getposts,
-            [
-            getopts(
-                {
-                    "num": "int",
-                    "sort": ("literal", ("hot", "new", "controversial", "gilded", "top", "rising"))
-                }
-                ),
-            optional("text")
-            ]
-        )
+            getposts,
+                [
+                getopts(
+                    {
+                        "num": "int",
+                        "sort": ("literal", ("hot", "new", "controversial", "gilded", "top", "rising"))
+                    }
+                    ),
+                    optional("text")
+                ]
+            )
 
 Class = Reddit
 
